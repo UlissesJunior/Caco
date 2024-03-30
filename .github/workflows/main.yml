@@ -1,0 +1,22 @@
+name: Auto Pull Request
+
+on:
+  push:
+    branches:
+      - main  # ou a branch que você deseja monitorar
+
+jobs:
+  create_pull_request:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        title: Auto-generated PR
+        branch: main  # ou a branch que você deseja enviar a pull request
+        base: main  # a branch de destino da pull request
